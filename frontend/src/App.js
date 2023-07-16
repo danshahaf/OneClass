@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import MainMenu from './components/MainMenu';
 
-function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('/api')
-      .then(response => response.text())
-      .then(data => setMessage(data))
-      .catch(error => console.log(error));
-  }, []);
-
+const App = () => {
   return (
-    <div className="App">
-      <h1>{message}</h1>
+    <div>
+      <MainMenu />
+      {/* Add the rest of your application components here */}
+      <h1>Welcome to My App</h1>
+      {/* Other components and content */}
     </div>
   );
-}
+};
 
 export default App;
