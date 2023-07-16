@@ -1,32 +1,55 @@
 .main-menu {
-  background-color: #3366cc; /* Lightened blue color */
-  height: 40px;
-  position: fixed; /* Position the menu bar fixed */
-  top: 0; /* Position it at the top */
-  left: 0; /* Position it at the left */
-  width: 100%; /* Set width to 100% */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  z-index: 9999; /* Set a high z-index to ensure it appears above other elements */
-}
-
-.main-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-
-.main-menu li {
-  margin-left: 10px;
-}
-
-.menu-button {
-  background-color: transparent;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+    background-color: #3366cc;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .left-menu {
+    margin-right: auto;
+    margin-left: 10px;
+  }
+  
+  .main-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .main-menu li {
+    margin-left: 10px;
+  }
+  
+  .menu-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 5px; /* Add spacing to the right of each icon */
+  }
+  
+  
+  .menu-button.active {
+    color: #3366cc;
+  }
+  
+  .notification-window {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

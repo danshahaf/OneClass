@@ -1,0 +1,41 @@
+.side-menu {
+  position: fixed;
+  top: 60px; /* Adjust the top value to match the height of your menu bar */
+  left: 0;
+  width: 250px;
+  background-color: #f0f0f0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column; /* Set the direction to vertical */
+  align-items: flex-start; /* Align items to the start of the container */
+  padding-left: 10px; /* Add spacing from the left edge */
+}
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0; /* Adjust the margin as needed */
+  display: flex;
+  flex-direction: column; /* Set the direction to vertical */
+}
+
+.side-menu li {
+  margin-bottom: 10px; /* Adjust the margin as needed */
+  display: flex;
+  align-items: center; /* Align items vertically in each list item */
+}
+
+.side-menu li a {
+  text-decoration: none;
+  color: #333;
+  margin-left: 10px; /* Add spacing between the icon and text */
+}
+
+.side-menu li i {
+  margin-right: 10px; /* Add spacing between the icon and text */
+}
