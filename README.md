@@ -1,23 +1,20 @@
 # ClassroomAssistant
 
-# Project Name
+## Project Name
 
-This repository contains the source code for **ClassroomAssistant?**. [Add a brief description of the project and its purpose.]
+This repository contains the source code for **ClassroomAssistant**. [Add a brief description of the project and its purpose.]
 
 ## Tech Stack
 
 The project is built using the following technologies:
 
-- **Database**: MongoDB, SQL 
+- **Database**: MongoDB, SQL
 
-   1. Must store basic schema and support relationships between tables, thus must be relational database system
+   1. Must store basic schema and support relationships between tables, thus must be a relational database system.
+   2. Must store files of varying size and type, unless we decide to implement a cloud-based file storage system.
+      - [ docx, pdf, pptx, ... ] for lecture slides and notes.
+      - [mp4, mov, ...] for lecture recordings.
 
-   2. Must store files or varying size and type, unless we decide to implement a cloud based file storage system 
-
-    - [ docx, pdf, pptx, ... ] for lecture slides and notes
-
-    - [mp4, mov, ...] for lecture recordings
-  
 - **Frontend**: React or Angular [Include any relevant frontend libraries or frameworks]
 - **Backend**: Node.js [Specify any additional backend technologies used]
 - **Machine Learning**: Python [Specify the purpose of Python integration and any specific libraries used]
@@ -28,8 +25,9 @@ To get a local copy of the project up and running, follow these steps:
 
 1. Clone the repository: `git clone [repository URL]`
 2. Navigate to the project directory: `cd [project directory]`
-3. Install dependencies: `npm install` [Add any specific instructions for installing frontend dependencies]
-4. [Specify any additional setup steps, such as database setup or API keys]
+3. Run the `runme.sh` script: `./runme.sh` [Specify any additional instructions or dependencies required to run the script]
+4. Install dependencies: `npm install` [Add any specific instructions for installing frontend dependencies]
+5. [Specify any additional setup steps, such as database setup or API keys]
 
 ## Development Workflow
 
