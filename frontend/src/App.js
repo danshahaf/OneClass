@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import MainMenu from './components/MainMenu';
 import MainPage from './components/MainPage';
+import SignIn from './components/SignIn'; 
 
-const App = () => {
+function App() {
+  const [currentPage, setCurrentPage] = useState('Classes');
+
   return (
-    <div className = "App">
-      <MainMenu />
-      <MainPage />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          {/* Sign-in Route */}
+          <Route path="/signin" element={<SignIn />} />
+
+          {/* Main Application Route */}
+          <Route path="/main" element={
+            <>
+              <MainMenu changePage={setCurrentPage} />
+              <MainPage currentPage={currentPage} />
+            </>
+          } />
+
+          {/* Default Route: Redirect to Sign-in */}
+          <Route path="*" element={<Navigate to="/signin" />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;

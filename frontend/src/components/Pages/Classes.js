@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHome, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
-import './ClassesPage.css';
+import './Classes.css';
 
-const ClassesPage = ({ mainContentHeight }) => {
+const Classes = ({ mainContentHeight }) => {
   
 
   return (
@@ -60,4 +60,4 @@ const ClassesPage = ({ mainContentHeight }) => {
   );
 };
 
-export default ClassesPage;
+export default Classes;

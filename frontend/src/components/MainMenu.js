@@ -4,7 +4,7 @@ import { faBars, faHome, faBell, faUser } from '@fortawesome/free-solid-svg-icon
 import SideMenu from './SideMenu';
 import './MainMenu.css';
 
-const MainMenu = ({ mainContentHeight }) => {
+const MainMenu = ({ mainContentHeight, changePage }) => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
@@ -26,7 +26,7 @@ const MainMenu = ({ mainContentHeight }) => {
       </div>
       <ul>
         <li>
-          <button className="menu-button">
+          <button className="menu-button" onClick={() => changePage('Classes')}>
             <FontAwesomeIcon icon={faHome} />
           </button>
         </li>
@@ -44,7 +44,7 @@ const MainMenu = ({ mainContentHeight }) => {
         </li>
 
         <li>
-          <button className="menu-button">
+          <button className="menu-button" onClick={() => changePage('Profile')}>
             <FontAwesomeIcon icon={faUser} />
           </button>
         </li>

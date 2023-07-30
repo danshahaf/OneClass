@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faHome, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
-import './MainPage.css';
-import ClassesPage from './Pages/ClassesPage'
+import React from 'react';
+import Classes from './Pages/Classes';
+import Profile from './Pages/Profile';
 
-const MainPage = ({ mainContentHeight }) => {
-  
-
+const MainPage = ({ currentPage }) => {
   return (
     <div className='mainPage'>
-        <ClassesPage />
+      {currentPage === 'Classes' && <Classes />}
+      {currentPage === 'Profile' && <Profile />}
     </div>
   );
 };

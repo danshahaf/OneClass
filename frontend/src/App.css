@@ -9,7 +9,22 @@
 }
 
 html {
+  height: 100%;
+}
+
+body{
   height: 100% !important;
+  text-align: center !important; 
+  width: 100% !important;
+  background-color: white !important;
+  background-position: center !important; 
+  background-repeat: no-repeat !important; 
+  background-size: 100% !important; 
+  background-attachment: fixed !important;
+  font-family: 'Neue Montreal', sans-serif;
+  padding: 0px !important;
+  margin: 0px !important;
+  top: 60px !important;
 }
 
 .App-logo {

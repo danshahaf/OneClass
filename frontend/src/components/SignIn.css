@@ -1,0 +1,65 @@
+body {
+    margin: 0; 
+    padding: 0; 
+}
+
+.signin-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../attachments/signin-background.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* Semi-transparent overlay */
+.signin-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);  /* Black with 60% opacity */
+    z-index: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;  /* To ensure form appears above overlay */
+}
+
+h1 {
+    color: white;
+    font-family: 'Arial', sans-serif;  /* You can replace this with a font of your choice */
+    margin-bottom: 200px;
+    z-index: 2;  /* To ensure title appears above overlay */
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 150px;
+    border: 1px solid #ccc;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.7);  /* 3D effect */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 150px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
