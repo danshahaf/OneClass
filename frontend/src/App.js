@@ -17,10 +17,10 @@ function App() {
 
           {/* Main Application Route */}
           <Route path="/main" element={
-            <>
+            <div className="main-container">
               <MainMenu changePage={setCurrentPage} />
               <MainPage currentPage={currentPage} />
-            </>
+            </div>
           } />
 
           {/* Default Route: Redirect to Sign-in */}

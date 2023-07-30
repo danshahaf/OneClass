@@ -3,6 +3,14 @@ body {
     padding: 0; 
 }
 
+.form-container {
+    background: rgba(255, 255, 255, 0.2);  /* White background with 20% opacity */
+    padding: 20px 40px;
+    border-radius: 20px;
+    z-index: 2;  /* To ensure it appears above overlay */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Soft shadow for depth */
+}
+
 .signin-container {
     display: flex;
     flex-direction: column;
@@ -42,15 +50,15 @@ h1 {
     z-index: 2;  /* To ensure title appears above overlay */
 }
 
-input {
-    padding: 10px;
+input.signin-email-input {
+    padding: 10px 20px;
     font-size: 16px;
     border-radius: 150px;
     border: 1px solid #ccc;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.7);  /* 3D effect */
 }
 
-button {
+button.signin-submit {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -60,6 +68,14 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button.signin-submit:hover {
     background-color: #0056b3;
 }
+
+/* In SignIn.css */
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
