@@ -2,14 +2,15 @@
   position: fixed;
   top: 60px; /* Adjust the top value to match the height of your menu bar */
   left: 0;
-  width: 250px;
+  width: 200px;
   background-color: #f0f0f0;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
   display: flex;
+  height: 100%;
   flex-direction: column; /* Set the direction to vertical */
   align-items: flex-start; /* Align items to the start of the container */
-  padding-left: 10px; /* Add spacing from the left edge */
+  padding: 20px; /* Adjust this value to change spacing from the edge */
 }
 
 .side-menu.open {
@@ -19,7 +20,7 @@
 .side-menu ul {
   list-style: none;
   padding: 0;
-  margin: 10px 0; /* Adjust the margin as needed */
+  margin: 0; /* Removed top and bottom margin to pin ul to its container */
   display: flex;
   flex-direction: column; /* Set the direction to vertical */
 }
@@ -27,15 +28,18 @@
 .side-menu li {
   margin-bottom: 10px; /* Adjust the margin as needed */
   display: flex;
-  align-items: center; /* Align items vertically in each list item */
+  align-items: left; /* Align items vertically in each list item */
+  width: 100%;
+  /* left: 10px !important; */
 }
 
 .side-menu li a {
   text-decoration: none;
   color: #333;
-  margin-left: 10px; /* Add spacing between the icon and text */
+  margin-left: 0; /* Remove any margin to the left */
 }
 
-.side-menu li i {
-  margin-right: 10px; /* Add spacing between the icon and text */
+/* This will add spacing between the icon and the text */
+.side-menu li a > svg {
+  margin-right: 10px; 
 }

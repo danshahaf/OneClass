@@ -30,11 +30,7 @@ const MainMenu = ({ mainContentHeight }) => {
             <FontAwesomeIcon icon={faHome} />
           </button>
         </li>
-        <li>
-          <button className="menu-button">
-            <FontAwesomeIcon icon={faUser} />
-          </button>
-        </li>
+      
         <li>
         <button className="menu-button" onClick={toggleNotification}>
           <FontAwesomeIcon icon={faBell} />
@@ -45,6 +41,12 @@ const MainMenu = ({ mainContentHeight }) => {
             This is the notification window.
           </div>
         )}
+        </li>
+
+        <li>
+          <button className="menu-button">
+            <FontAwesomeIcon icon={faUser} />
+          </button>
         </li>
       </ul>
     </nav>

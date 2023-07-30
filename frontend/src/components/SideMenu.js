@@ -1,5 +1,7 @@
 import React from 'react';
 import './SideMenu.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar, faListCheck, faBriefcase, faChess } from '@fortawesome/free-solid-svg-icons';
 
 const SideMenu = ({ isOpen, mainContentHeight }) => {
   return (
@@ -10,16 +12,28 @@ const SideMenu = ({ isOpen, mainContentHeight }) => {
       {/* Add your side menu content here */}
       <ul className="menu-options">
         <li>
-          <a href="#">Calendar</a>
+          <a href="#">
+            <FontAwesomeIcon icon={faCalendar} />
+            Calendar
+          </a>
         </li>
         <li>
-          <a href="#">Planner</a>
+          <a href="#">
+            <FontAwesomeIcon icon={faListCheck} />
+            Planner
+          </a>
         </li>
         <li>
-          <a href="#">Career</a>
+          <a href="#">
+            <FontAwesomeIcon icon={faBriefcase} />
+            Career
+          </a>
         </li>
         <li>
-          <a href="#">Extracurriculars</a>
+          <a href="#">
+            <FontAwesomeIcon icon={faChess} />
+            Extracurriculars
+          </a>
         </li>
       </ul>
     </div>

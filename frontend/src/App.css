@@ -1,10 +1,24 @@
 .App {
+  height: 100%;
   text-align: center;
+  font-family: 'Roboto', sans-serif; /* Setting Roboto as the default font */
+}
+
+.root {
+  height: 100%;
+}
+
+html {
+  height: 100% !important;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.mainTitle {
+  height: 500px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -29,10 +43,15 @@
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
 }
+
+.main-content {
+  padding-top: 60px;    /* Adjusted for MainMenu */
+  padding-left: 250px;  /* Adjusted for SideMenu, change this value if needed */
+  width: calc(100% - 250px); /* Subtracting the width occupied by SideMenu */
+  height: 100% !important;
+  background-color: aquamarine;
+}
+

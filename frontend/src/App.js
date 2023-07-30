@@ -1,15 +1,12 @@
 import React from 'react';
 import MainMenu from './components/MainMenu';
+import MainPage from './components/MainPage';
 
 const App = () => {
   return (
-    <div>
+    <div className = "App">
       <MainMenu />
-      <div className="main-content">
-        {/* Add the rest of your application components here */}
-        <h1>Welcome to My App</h1>
-        {/* Other components and content */}
-      </div>
+      <MainPage />
     </div>
   );
 };
