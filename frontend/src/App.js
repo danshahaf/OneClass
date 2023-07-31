@@ -16,7 +16,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
 
           {/* Main Application Route */}
-          <Route path="/main" element={
+          <Route path="/student" element={
             <div className="main-container">
               <MainMenu changePage={setCurrentPage} />
               <MainPage currentPage={currentPage} />

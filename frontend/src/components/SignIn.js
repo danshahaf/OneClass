@@ -20,7 +20,13 @@ const SignIn = () => {
         const data = await response.json();
         console.log(" >> DATA", data);
         if (data.exists) {
-            navigate('/main');
+            if (data[0] == 'student') {
+                navigate('/student');
+            } else if (data[0] == 'faculty') {
+                navigate('faculty');
+            } else if(data[0] == 'admin') {
+                navigate('admin');
+            }   
         } else {
             setErrorMessage(data.message);
         }

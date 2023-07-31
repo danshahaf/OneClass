@@ -57,7 +57,7 @@ app.post('/api/check-email', (req, res) => {
       if (results && results.length > 0) {
           res.json({ exists: true });
       } else {
-          res.json({ exists: false, message: "Email not recognized by the system." });
+        res.json({ exists: false, message: "Email not recognized by the system." });
       }
   });
 });
