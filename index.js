@@ -14,10 +14,17 @@ app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
 // MySQL Connection
 const db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'Sdan3189',
-  database: 'theboard'
+  // ---- LOCALHOST INFORMATION - SHAHAF'S MACHINE -----
+  // host: '127.0.0.1',
+  // user: 'root',
+  // password: 'Sdan3189',
+  // database: 'theboard'
+
+  // ------ LIVE DATABASE -----
+  host: 'sql9.freemysqlhosting.net',
+  user: 'sql9636631',
+  password: 'wzXSRW4M5N', //DO NOT DELETE THIS PLEASE -haf
+  database: 'sql9636631'
 });
 
 db.connect((err) => {
