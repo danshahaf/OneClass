@@ -1,0 +1,27 @@
+
+~ npm install 
+
+
+npm install body-parser
+npm install cors
+npm install express
+npm install mysql2
+npm install path 
+npm install react-router-dom
+npm install react-scripts
+
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/free-solid-svg-icons
+npm install @fortawesome/react-fontawesome
+npm install @mui/icons-material
+npm install @testing-library/jest-dom
+npm install @testing-library/react
+npm install @testing-library/user-event
+npm install react
+npm install react-dom
+npm install react-router-dom
+npm install react-scripts
+npm install web-vitals
+npm install @mui/material
+npm install @emotion/styled
+npm install @emotion/react

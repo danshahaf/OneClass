@@ -1,38 +1,122 @@
-.profile-page {
-    width: 100%;
-    padding: 20px;
+/* CSS to split the screen into halves */
+.split-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Set the container to cover the full viewport height */
 }
 
-.profile-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.upper_half {
+  flex: 1; /* The upper_half container will take 50% of the available height */
+  background-color: lightgray; /* Optional background color for visual clarity */
 }
 
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+.lower_half {
+  flex: 1; /* The lower_half container will also take 50% of the available height */
+  background-color: lightgray; /* Optional background color for visual clarity */
 }
 
-.profile-details {
-    flex-grow: 1;
+.hayden-rothman,
+.resume {
+  position: relative;
 }
-
-.school-logo {
-    width: 50px;
-    height: 50px;
+.resume {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-inter);
+  color: var(--color-blue);
+  text-align: left;
+  display: inline-block;
+  width: 395px;
+  height: 32px;
+  flex-shrink: 0;
 }
-
-.collapsible {
-    margin-top: 20px;
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ddd;
-    cursor: pointer;
+.profile-details-container,
+.profile-details-macro-containe {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
-
-.collapsible.active {
-    /* Styles for expanded sections */
-    background-color: #f5f5f5;
+.profile-details-container {
+  width: 502px;
+  height: 162px;
+  gap: 4px;
+}
+.profile-details-macro-containe {
+  position: absolute;
+  top: 402px;
+  left: 56px;
+  width: 505px;
+  padding: 0 3px;
+  box-sizing: border-box;
+}
+.background-img-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1854px;
+  height: 339px;
+  object-fit: cover;
+}
+.set-profile-background-img-but {
+  position: absolute;
+  top: 16px;
+  left: 1790px;
+}
+.profile-pic-img-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  width: 208px;
+  height: 198px;
+  object-fit: cover;
+}
+.profile-image {
+  position: absolute;
+  top: 81px;
+  left: 28px;
+  display: inline-block;
+  width: 139px;
+  height: 39px;
+}
+.frame,
+.profile-pic-img {
+  position: absolute;
+  top: 169px;
+  left: 47px;
+  width: 208px;
+  height: 198px;
+}
+.frame {
+  top: 0;
+  left: 0;
+  width: 1854px;
+  height: 367px;
+  overflow: hidden;
+}
+.profile-details-div {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  background-color: var(--color-gainsboro);
+}
+.profile-screen {
+  position: relative;
+  background-color: var(--color-white);
+  width: 1921px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 30px;
+  box-sizing: border-box;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: var(--font-size-5xl);
+  color: var(--color-white);
+  font-family: var(--font-inter);
 }

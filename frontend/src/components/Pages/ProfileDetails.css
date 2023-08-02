@@ -1,0 +1,70 @@
+.profile-details-div {
+  background-color: #d9d9d9;
+  border: 1px none;
+  height: 40vh; /* Set the height to 40% of the viewport height */
+  position: relative;
+  width: 90%; /* Set the width to 90% of the screen */
+  max-width: 1200px; /* Set a maximum width for the container to avoid excessive scaling */
+  margin: 0 auto; /* Center horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align items to the bottom right side */
+  padding: 20px; /* Add some padding for spacing */
+}
+
+.profile-details {
+  width: 66.66%; /* 2/3 of the profile-details-div */
+}
+
+.profile-details .div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%; /* Make the content inside the profile-details container take the full width */
+}
+
+.text-wrapper,
+.text-wrapper-2,
+.text-wrapper-3,
+.text-wrapper-4 {
+  /* Your existing styles for the text elements */
+  /* Update them as per your design requirements */
+  text-align: right; /* Align the text to the right */
+}
+
+.frame {
+  height: 50%; /* Set the height of the frame to half of the profile-details-div */
+  width: 100%; /* Make the frame take the full width */
+}
+
+.overlap-group {
+  height: 100%; /* Make the overlap-group container take the full height of the frame */
+  /* Your existing styles for the overlap-group container */
+  display: flex; /* Use flex to arrange the profile photo and background image horizontally */
+  position: relative; /* Make sure this container is positioned relatively to allow absolute positioning for the images inside */
+}
+
+.background-img-container {
+  /* Make the background image fill the container horizontally and 2/5 of the container vertically */
+  width: 100%; /* 2/3 of the overlap-group container */
+  height: 40%; /* 2/5 of the overlap-group container */
+  overflow: hidden;
+  position: relative; /* Make sure this container is positioned relatively to allow absolute positioning for the images inside */
+}
+
+.background-img {
+  /* Set the background image to cover the container */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-pic-img {
+  height: 198px;
+  width: 198px; /* Set the desired width for the profile image */
+  position: absolute;
+  top: 40%; /* 2/5 down from the top of the screen */
+  left: 20%; /* 1/5 to the right of the left side of the screen */
+  border-radius: 50%; /* This value makes the image perfectly round */
+  overflow: hidden;
+}

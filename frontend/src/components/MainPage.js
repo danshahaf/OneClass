@@ -1,12 +1,12 @@
 import React from 'react';
 import Classes from './Pages/Classes';
-import Profile from './Pages/Profile';
+import ProfileScreen from './Pages/Profile';
 
 const MainPage = ({ currentPage }) => {
   return (
     <div className='mainPage'>
       {currentPage === 'Classes' && <Classes />}
-      {currentPage === 'Profile' && <Profile />}
+      {currentPage === 'Profile' && <ProfileScreen />}
     </div>
   );
 };
