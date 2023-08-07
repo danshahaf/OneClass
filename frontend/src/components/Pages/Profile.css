@@ -4,25 +4,22 @@
   flex-direction: column;
   height: 100vh; /* Set the container to cover the full viewport height */
   overflow-y: auto; /* Enable vertical scrolling */
+  position: relative;
 }
 
 .upper_half {
   flex: 1; /* The upper_half container will take 50% of the available height */
   background-color: lightgray; /* Optional background color for visual clarity */
-}
-
-.divider {
-  height: 2px;
-  background-color: black; /* Color of the divider */
+  max-height: 50%;
+  position: relative;
 }
 
 .lower_half {
   flex: 1; /* The lower_half container will also take 50% of the available height */
   background-color: lightgray; /* Optional background color for visual clarity */
+  max-height: 50%;
+  position: relative;
 }
-
-/* Rest of your existing CSS rules */
-
 
 .hayden-rothman,
 .resume {

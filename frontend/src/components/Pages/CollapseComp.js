@@ -14,14 +14,14 @@ const CollapseButton = (sampleObjects) => {
   };
 
   return (
-    <div>
+    <div className="lower-half-container">
       {!showList &&
         <button className="button_large" onClick={handleButtonClick}>Toggle Object List</button>
       }
       {showList && 
-      <div>
+      <div >
         <ObjectList objects={sampleObjects} />
-        <button className="button_small" onClick={handleButtonClick}> Close </button>
+          <button className="button_small" onClick={handleButtonClick}> Close </button>
       </div>
       } {/* Replace 'sampleObjects' with your actual object list */}
 

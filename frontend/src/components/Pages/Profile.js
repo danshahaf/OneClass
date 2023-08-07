@@ -17,8 +17,8 @@ const Profile = () => {
     };
     
   return (
-    <view>
-    <div className="split-container">
+    <view >
+    <div className="split-container" >
       <div className="upper_half">
         {/* Content for the upper half goes here */}        
         <ProfileDetails> </ProfileDetails> 
