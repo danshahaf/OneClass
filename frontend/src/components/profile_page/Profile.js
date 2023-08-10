@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProfileDetails from './components/ProfileDetails';
-import CollapseComp from '../profile_collapse/CollapseComp';
+import CollapseComp from './components/CollapseComp';
 
 import './Profile.css';
 

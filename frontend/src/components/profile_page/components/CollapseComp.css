@@ -3,21 +3,19 @@
   width: 100%;
   max-height: 100%;
   display: flex;
-}
-
-.button-container {
-  width: 100%;
-  max-height: 50%;
-  display: 1;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Child containers (dividing the lower half into thirds) */
 .child-container {
   flex: 1; /* Each child container will take 1/3 of the available width */
-  padding: 10; /* Add padding to create spacing between child containers */
+  padding: 200px; /* Add margin to create spacing between child containers */
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
+  width: 100%;
 }
 /* Button styles */
 .button_large {
@@ -32,7 +30,7 @@
   border-radius: 50px;
   cursor: pointer;
   /* Set the width to 50% of the button's container */
-  max-width: 70%;
+  max-width: 100%;
   height: 50%;
   flex:1;
 }
@@ -44,16 +42,11 @@
   font-size: 24px;
   font-weight: 800;
   text-align: center;
-  padding: 15px; /* Add "px" unit to the padding value */
-  border: none;
   border-radius: 50px;
   cursor: pointer;
   /* Set the width to 50% of the button's container */
   max-width: 100%;
   max-height: 20%;
   flex:1;
-  align-items: center;
-  justify-content: center;
-
 }
 

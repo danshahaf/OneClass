@@ -3,6 +3,8 @@
 .ObjectItemBox {
     display: flex;
     align-items: center;
+    width: 100%;
+
 }
   
 /* Styling for the name and age labels */
@@ -14,4 +16,5 @@
 /* Styling for the name and age values */
 .ObjectListValues {
     font-weight: normal;
+    text-align: right;
 }

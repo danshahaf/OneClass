@@ -8,7 +8,7 @@ export const connectDB = () => {
 
 // TODO: must implement SingleObject to fully display classes, jobs and extras
 // this is a simple data object used for testing purposes, 
-const sampleLs=[
+const sampleLs = [
     {
         name: "Hayden",
         age: 21
@@ -33,6 +33,7 @@ export const getClasses = () => {
     // this function is called within the CollapseComp.js in order to get the classes 
     // a student is enrolled in or has been enrolled in
     return [sampleLs[0],sampleLs[3]];
+
 };
 
 // TODO: implement this query --> probably should take a user id in order to locate the classes

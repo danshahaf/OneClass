@@ -3,16 +3,16 @@ import './ObjectList.css'; // Import the CSS file
 import SingleObject from './SingleObject';
 
 
-
+// given a list of objects, title to display above list, and the width of the component as percentage
 const ObjectList = ({objects, title}) => {
   console.log("ObjectList input type: \n  objects:  ", typeof(objects), "   ", objects, "\n  title:  ", typeof(title), "   ", title)
 
   return (
-    <div className="ObjectListContainer">
-      <h2 className="ObjectListHeader">{title}:</h2>
-      <ul className="ObjectList">
+    <div className="ObjectList">
+      <h2 className="ObjectList_Title">{title}:</h2>
+      <ul className="ObjectList_List">
         {objects.map((object, index) => (
-          <li key={index} className="ObjectListItem">
+          <li key={index} className="ObjectList_Item">
             <SingleObject obj={object}> </SingleObject>
           </li>
         ))}

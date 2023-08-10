@@ -1,8 +1,8 @@
 import React from "react";
-import CollapseListDisplay from "./components/CollapseListDisplay";
+import CollapseListDisplay from "./profile_collapse/components/CollapseListDisplay";
 import "./CollapseComp.css";
 
-import { getJobs, getClasses, getExtracurriculars } from "../../../../../rest/restful";
+import { getJobs, getClasses, getExtracurriculars } from "../../../rest/restful";
 
 const CollapseComp = () => {
   const classes = getClasses();
@@ -21,8 +21,6 @@ const CollapseComp = () => {
         <CollapseListDisplay sampleObjects={extracurriculars} title="Extracurriculars"> </CollapseListDisplay>
       </div>
     </div>
-
-
   );
 };
 

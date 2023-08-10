@@ -1,6 +1,7 @@
 import "./ProfileDetails.css";
-import profilePhoto from "../../attachments/profilephoto.jpeg"; // Import the profile photo
-import signinBackground from "../../attachments/signin-background.jpeg"; // Import the profile photo
+import profilePhoto from "../../../attachments/profilephoto.jpeg"; // Import the profile photo
+import signinBackground from "../../../attachments/signin-background.jpeg"; // Import the profile photo
+
 
 const ProfileDetails = () => {
   return (
