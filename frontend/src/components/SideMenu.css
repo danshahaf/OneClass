@@ -1,22 +1,3 @@
-.side-menu {
-  position: fixed;
-  top: 60px; /* Adjust the top value to match the height of your menu bar */
-  left: 0;
-  width: 200px;
-  background-color: #f0f0f0;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-  display: flex;
-  height: 100%;
-  flex-direction: column; /* Set the direction to vertical */
-  align-items: flex-start; /* Align items to the start of the container */
-  padding: 20px; /* Adjust this value to change spacing from the edge */
-}
-
-.side-menu.open {
-  transform: translateX(0);
-}
-
 .side-menu ul {
   list-style: none;
   padding: 0;
@@ -25,21 +6,33 @@
   flex-direction: column; /* Set the direction to vertical */
 }
 
+/* Updated styles for the list items */
 .side-menu li {
   margin-bottom: 10px; /* Adjust the margin as needed */
   display: flex;
-  align-items: left; /* Align items vertically in each list item */
-  width: 100%;
-  /* left: 10px !important; */
+  align-items: center; /* Vertically center the icon and text */
+  border: 2px solid #3366cc; /* 2px border with the specified color */
+  border-radius: 5px; /* slight curve on the corners */
+  padding: 10px; /* space inside each list item */
+  transition: background-color 0.3s; /* smooth transition for hover effect */
 }
 
+/* Add a hover effect for better user feedback */
+.side-menu li:hover {
+  background-color: #e6e6e6; /* Change this color if needed */
+}
+
+/* Style the anchor elements inside the list items */
 .side-menu li a {
   text-decoration: none;
   color: #333;
+  display: flex; /* To align the icon and text */
+  align-items: center; /* Vertically center the icon and text */
+  width: 100%; /* Take the full width of the parent li */
   margin-left: 0; /* Remove any margin to the left */
 }
 
-/* This will add spacing between the icon and the text */
+/* Add spacing between the icon and the text */
 .side-menu li a > svg {
-  margin-right: 10px; 
+  margin-right: 10px;
 }
