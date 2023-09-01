@@ -1,0 +1,32 @@
+.profile-page {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* CSS to split the screen into halves */
+.split-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Set the container to cover the full viewport height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative;
+}
+
+.upper_half {
+    flex: 1; /* The upper_half container will take 50% of the available height */
+    background-color: lightgray; /* Optional background color for visual clarity */
+    max-height: 40vh;               /* use viewport height rather than full screen size, allows us to view the details better */
+    position: relative;
+  }
+  
+.lower_half {
+    flex: 1; /* The lower_half container will also take 50% of the available height */
+    background-color: lightgray; /* Optional background color for visual clarity */
+    height: 60vh;  
+    position: relative;
+}
+
+
+

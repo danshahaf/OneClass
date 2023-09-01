@@ -1,0 +1,22 @@
+/* ObjectList.css */
+
+/* Styling for the container div */
+/* Styling for the list container with scroll */
+.object-list {
+  width: 95%; /* Adjust the width as per your preference */
+  margin: 0 auto;
+  border-radius: 5px;
+  /* Add a fixed height and enable scrolling */
+  height: 400px; /* Adjust the height as needed */
+  overflow: auto; /* Enable vertical scrolling */
+}
+
+/* Styling for the header */
+.object-list-header {
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+.object-list-list{
+  list-style: none;
+  padding: 0;
+}

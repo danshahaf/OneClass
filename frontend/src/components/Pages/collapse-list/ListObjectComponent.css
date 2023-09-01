@@ -1,0 +1,36 @@
+
+  
+/* Styling for each list item */
+.object-list-container {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #00a2e8; /* Blue color */
+    color: #fff; /* White text color */
+    padding: 10px;
+    width: 90%;
+    display: flex;
+    align-self: center;
+  }
+  
+  /* Styling for the item boxes */
+  .object-list-property {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  /* Styling for the name and age labels */
+  .object-list-property-header {
+    font-weight: bold;
+    padding-right: 25px;
+  }
+  
+  /* Styling for the name and age values */
+  .object-list-property-value {
+    font-weight: normal;
+    text-align: right;
+  }
+
+
+  

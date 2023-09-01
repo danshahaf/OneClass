@@ -8,7 +8,7 @@ import SignIn from './components/SignIn';
 import Notifications from './components/Notifications'; 
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('Classes');
+  const [currentPage, setCurrentPage] = useState('Profile');
 
   return (
     <BrowserRouter>

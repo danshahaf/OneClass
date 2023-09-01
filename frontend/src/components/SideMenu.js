@@ -3,78 +3,51 @@ import './SideMenu.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faListCheck, faBriefcase, faChess } from '@fortawesome/free-solid-svg-icons';
 import { faBook, faEnvelope, faUser, faCog, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { Resizable } from 'react-resizable';
 
+
+class pageObject {
+  pageName;
+  constructor(pageName, icon) {
+    this.pageName = pageName;
+    this.icon = icon;
+  }
+}
 
 const SideMenu = ({ changePage }) => {
   const [currentPage, setCurrentPage] = useState('Classes');
 
+  const classesPage = new pageObject('Classes', faBook);
+  const opportuitiesPage = new pageObject('Opportuities', faBriefcase);
+  const extracurricularsPage = new pageObject('Extracurriculars', faChess);
+  const eventsPage = new pageObject('Events', faChess);
+  const feedPage = new pageObject('Feed', faUser);
+  const dispatchPage = new pageObject('Dispatch', faEnvelope);
+  const calendarPage = new pageObject('Calendar', faCalendar);
+  const tasksPage = new pageObject('Tasks', faListCheck);
+  const profilePage = new pageObject('Profile', faUser);
+  const settingsPage = new pageObject('Settings', faCog);
+  const gradesPage = new pageObject('Grades', faCog);
+  const pageList = [
+    classesPage, opportuitiesPage, extracurricularsPage, eventsPage, feedPage, dispatchPage, calendarPage, tasksPage,
+    profilePage, settingsPage, gradesPage
+  ]
+  
 
   return (
-    <div className='side-menu'>
-      {/* Add your side menu content here */}
-      <ul className="menu-options">
-        <li>
-          <a href="#" onClick={() => changePage('Classes')}>
-            <FontAwesomeIcon icon={faBook} />
-            Classes
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Opportuities')}>
-            <FontAwesomeIcon icon={faBriefcase} />
-            Opportunities
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Extracurriculars')}>
-            <FontAwesomeIcon icon={faChess} />
-            Extracurriculars
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Events')}>
-            <FontAwesomeIcon icon={faChess} />
-            Events
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Feed')}>
-            <FontAwesomeIcon icon={faUsers} />
-            Feed
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Dispatch')}>
-            <FontAwesomeIcon icon={faEnvelope} />
-            Dispatch
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Calendar')}>
-            <FontAwesomeIcon icon={faCalendar} />
-            Calendar
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Tasks')}>
-            <FontAwesomeIcon icon={faListCheck} />
-            Tasks
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Profile')}>
-            <FontAwesomeIcon icon={faUser} />
-            Profile
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => changePage('Settings')}>
-            <FontAwesomeIcon icon={faCog} />
-            Settings
-          </a>
-        </li>
-      </ul>
-    </div>
+      <div className='side-menu'>
+        {/* Add your side menu content here */}
+        <ul className="menu-options">
+          {pageList.map((_object, index) => (
+            <li key={index} >
+              <a href="#" onClick={() => changePage(_object.pageName)}>
+                <FontAwesomeIcon icon={_object.icon} />
+                {_object.pageName}
+              </a>
+            </li>
+            ))}
+        </ul>
+      </div>
   );
 };
 

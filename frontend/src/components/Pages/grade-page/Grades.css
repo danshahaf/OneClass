@@ -1,0 +1,63 @@
+.mainPage {
+    top: 60px !important;
+    position: fixed !important;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.semester {
+    padding: 20px;
+}
+
+.semester .id-term {
+    margin: 0px !important;
+    padding: 0px;
+    text-align: left;
+    padding: 5px 20px;
+}
+
+.semester .class-list {
+    display: flex;
+    justify-content: start; /* Changed from 'left' to 'start' */
+    align-items: baseline;
+    padding: 10px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping of content inside */
+    height: 250px; /* Adjust as needed; this sets a max height for the class list */
+}
+
+.semester .class-list .class { /* TODO: CHange height and width to 150px in mobile media */
+    position: relative; /* Enables absolute positioning of children */
+    height: 200px;
+    width: 200px;
+    background: orange;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px; /* Spacing between each class block */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end; /* align content to the bottom */
+}
+
+.semester .class-list .class .titles {
+    position: relative;
+    color: white; /* Change color of text to white */
+    width: 100%; /* Take full width to ensure wrapping */
+    text-align: left;
+}
+
+.semester .class-list .class .titles h4 {
+    font-size: 18px; /* Adjust as needed */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    word-wrap: break-word; /* Break the word if it's too long */
+}
+
+.semester .class-list .class .titles p {
+    font-size: 12px; /* Adjust as needed */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    word-wrap: break-word; /* Break the word if it's too long */
+}

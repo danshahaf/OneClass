@@ -1,0 +1,35 @@
+.background-img {
+    width: 100%;                    /* fill container on x-axis */
+    position: absolute;             /* set position to relative, required for the z-index, top and left */
+    top: 0;                         /* position on y-axis relative to top*/
+    left: 0;                        /* position on x-axis relative to left*/
+    z-index: 0;                     /* bring element to front */
+}
+.profile-image {
+    z-index: 1;                     /* bring element to front */
+    position: absolute;             /* set position to relative, required for the z-index property */
+    border-radius: 50%;             /* This value makes the image perfectly round */
+    top: 5%;                        /* position on y-axis relative to top */
+    right: 5%;                      /* position on x-axis relative to right */
+    height: 50%;                  /* Set the desired height for the profile image */
+    width: auto;                   /* Set the desired width for the profile image */
+}
+.text-wrapper{
+    z-index: 1;                     /* bring element to front */
+    text-align: right;              /* Align the text to the right */
+    padding-right: 5%;              /* add padding on right side */
+    padding-bottom: 0%;             /* add padding on bottom side */
+    position: absolute;             /* set position to relative, required for the z-index property */
+    color: whitesmoke;            /* change text color */
+    bottom: 0%;                     /* position on y-axis relative to bottom */
+    right: 0%;                      /* position on x-axis */
+}
+.name {
+    position: relative;             /* set position to relative, required for the z-index property */
+}
+.job {
+    position: relative;             /* set position to relative, required for the z-index property */
+}
+.address {
+    position: relative;             /* set position to relative, required for the z-index property */
+}

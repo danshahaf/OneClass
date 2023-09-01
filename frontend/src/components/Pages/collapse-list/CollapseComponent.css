@@ -1,0 +1,15 @@
+.collapse-component {
+    padding-top: 10px;
+    padding: 50px;
+}
+
+
+.horizontal-aligned-container {
+    flex-direction: row;                        /* display objects horizontally */
+    display: flex;                              /* required to use flex direction */
+}
+
+.vertical-aligned-container {
+    flex-direction: column;                        /* display objects vertically */
+    display: flex;                              /* required to use flex direction */
+}
