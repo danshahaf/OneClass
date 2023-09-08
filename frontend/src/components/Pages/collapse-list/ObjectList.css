@@ -3,7 +3,7 @@
 /* Styling for the container div */
 /* Styling for the list container with scroll */
 .object-list {
-  width: 95%; /* Adjust the width as per your preference */
+  width: 100%; /* Adjust the width as per your preference */
   margin: 0 auto;
   border-radius: 5px;
   /* Add a fixed height and enable scrolling */
@@ -12,11 +12,36 @@
 }
 
 /* Styling for the header */
-.object-list-header {
+.vertical-object-list-header {
   font-size: 24px;
   padding-bottom: 10px;
 }
-.object-list-list{
+.vertical-object-list-list {
   list-style: none;
   padding: 0;
+}
+
+
+
+.horizontal-object-list-container {
+  padding: 20px;
+  list-style: none;
+}
+
+.horizontal-object-list-header {
+  margin: 0px !important;
+  padding: 0px;
+  text-align: left;
+  padding: 5px 20px;
+}
+
+.horizontal-object-list-list {
+  list-style: none;
+  display: flex;
+  justify-content: start; /* Changed from 'left' to 'start' */
+  align-items: baseline;
+  padding: 10px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevents wrapping of content inside */
+  height: 250px; /* Adjust as needed; this sets a max height for the class list */
 }

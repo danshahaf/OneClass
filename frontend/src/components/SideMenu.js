@@ -4,18 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faListCheck, faBriefcase, faChess } from '@fortawesome/free-solid-svg-icons';
 import { faBook, faEnvelope, faUser, faCog, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { Resizable } from 'react-resizable';
-
-
-class pageObject {
-  pageName;
-  constructor(pageName, icon) {
-    this.pageName = pageName;
-    this.icon = icon;
-  }
-}
-
+import pageObject from './types/page';
 const SideMenu = ({ changePage }) => {
-  const [currentPage, setCurrentPage] = useState('Classes');
+  
 
   const classesPage = new pageObject('Classes', faBook);
   const opportuitiesPage = new pageObject('Opportuities', faBriefcase);
@@ -29,10 +20,11 @@ const SideMenu = ({ changePage }) => {
   const settingsPage = new pageObject('Settings', faCog);
   const gradesPage = new pageObject('Grades', faCog);
   const pageList = [
-    classesPage, opportuitiesPage, extracurricularsPage, eventsPage, feedPage, dispatchPage, calendarPage, tasksPage,
-    profilePage, settingsPage, gradesPage
-  ]
-  
+    classesPage, opportuitiesPage, extracurricularsPage, eventsPage, feedPage, dispatchPage, 
+    calendarPage, tasksPage, profilePage, settingsPage, gradesPage
+  ];
+
+  console.log("chnagePage:  ", changePage);
 
   return (
       <div className='side-menu'>

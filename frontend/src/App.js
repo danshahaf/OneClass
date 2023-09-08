@@ -10,6 +10,11 @@ import Notifications from './components/Notifications';
 function App() {
   const [currentPage, setCurrentPage] = useState('Profile');
 
+  const changePage = (page) => {
+    console.log("event:    ",page)
+    setCurrentPage(page);
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -22,8 +27,8 @@ function App() {
           <Route path="/student" element={
             <div className="main-container">
                 <MainMenu />
-                <SideMenu changePage={setCurrentPage} />
-                <MainPage currentPage={currentPage} />
+                <SideMenu changePage={changePage} />
+                <MainPage currentPage={currentPage} changePage={changePage} />
                 <Notifications />
             </div>
           } />

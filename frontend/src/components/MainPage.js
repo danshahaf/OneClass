@@ -9,12 +9,20 @@ import Calendar from './Pages/Calendar';
 import Tasks from './Pages/Tasks';
 import Settings from './Pages/Settings';
 import Grades from './Pages/grade-page/Grades';
+import Class from './Pages/Class'; 
+const MainPage = ({ currentPage,changePage }) => {
+  console.log("\n\n\n-------------------   ",changePage);
 
-const MainPage = ({ currentPage }) => {
+  if (changePage == undefined) {
+    changePage = (x) => { return x; };
+  }
+
   return (
     <div className='main-page'>
       {currentPage === 'Profile' && <Profile />}
-      {currentPage === 'Classes' && <Classes />}
+      {currentPage === 'Classes' && 
+        <Classes />
+      }
       {currentPage === 'Opportunities' && <Opportunities />}
       {currentPage === 'Extracurriculars' && <Extracurriculars />}
       {currentPage === 'Feed' && <Feed />}
