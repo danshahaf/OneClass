@@ -1,0 +1,530 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema sql9643262
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema sql9643262
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `sql9643262` DEFAULT CHARACTER SET utf8 ;
+USE `sql9643262` ;
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`University`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`University` (
+  `ID` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Domain` VARCHAR(45) NOT NULL,
+  `Timestamp_joined` DATETIME NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`School`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`School` (
+  `ID` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `University_ID`),
+  INDEX `fk_School_University_idx` (`University_ID` ASC) ,
+  CONSTRAINT `fk_School_University`
+    FOREIGN KEY (`University_ID`)
+    REFERENCES `sql9643262`.`University` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Department`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Department` (
+  `ID` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `School_ID`, `University_ID`),
+  INDEX `fk_Department_School1_idx` (`School_ID` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Department_School1`
+    FOREIGN KEY (`School_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`School` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Program`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Program` (
+  `ID` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Degree` VARCHAR(45) NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `Department_ID`, `School_ID`, `University_ID`),
+  INDEX `fk_Program_Department1_idx` (`Department_ID` ASC, `School_ID` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Program_Department1`
+    FOREIGN KEY (`Department_ID` , `School_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Department` (`ID` , `School_ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Class`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Class` (
+  `ID` INT NOT NULL,
+  `Serial` VARCHAR(45) NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `Department_ID`, `School_ID`, `University_ID`),
+  INDEX `fk_Class_Department1_idx` (`Department_ID` ASC, `School_ID` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Class_Department1`
+    FOREIGN KEY (`Department_ID` , `School_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Department` (`ID` , `School_ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Student`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Student` (
+  `ID` INT NOT NULL,
+  `FirstName` VARCHAR(45) NOT NULL,
+  `LastName` VARCHAR(45) NOT NULL,
+  `Image` BLOB NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `StudentID` VARCHAR(45) NOT NULL,
+  `Timestamp_joined` DATETIME NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `University_ID`),
+  INDEX `fk_Student_University1_idx` (`University_ID` ASC) ,
+  CONSTRAINT `fk_Student_University1`
+    FOREIGN KEY (`University_ID`)
+    REFERENCES `sql9643262`.`University` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`ProgramHasStudent`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`ProgramHasStudent` (
+  `Program_ID` INT NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Student_ID` INT NOT NULL,
+  PRIMARY KEY (`Program_ID`, `Department_ID`, `School_ID`, `University_ID`, `Student_ID`),
+  INDEX `fk_Program_has_Student_Student1_idx` (`Student_ID` ASC, `University_ID` ASC) ,
+  INDEX `fk_Program_has_Student_Program1_idx` (`Program_ID` ASC, `Department_ID` ASC, `School_ID` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Program_has_Student_Program1`
+    FOREIGN KEY (`Program_ID` , `Department_ID` , `School_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Program` (`ID` , `Department_ID` , `School_ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Program_has_Student_Student1`
+    FOREIGN KEY (`Student_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Student` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Requirements_ProgramHasClass`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Requirements_ProgramHasClass` (
+  `Class_ID` INT NOT NULL,
+  `Department_ID_Class` INT NOT NULL,
+  `School_ID_Class` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Program_ID` INT NOT NULL,
+  `Department_ID_Program` INT NOT NULL,
+  `School_ID_Program` INT NOT NULL,
+  PRIMARY KEY (`Class_ID`, `Department_ID_Class`, `School_ID_Class`, `University_ID`, `Program_ID`, `Department_ID_Program`, `School_ID_Program`),
+  INDEX `fk_Class_has_Program_Program1_idx` (`Program_ID` ASC, `Department_ID_Program` ASC, `School_ID_Program` ASC, `University_ID` ASC) ,
+  INDEX `fk_Class_has_Program_Class1_idx` (`Class_ID` ASC, `Department_ID_Class` ASC, `School_ID_Class` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Class_has_Program_Class1`
+    FOREIGN KEY (`Class_ID` , `Department_ID_Class` , `School_ID_Class` , `University_ID`)
+    REFERENCES `sql9643262`.`Class` (`ID` , `Department_ID` , `School_ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Class_has_Program_Program1`
+    FOREIGN KEY (`Program_ID` , `Department_ID_Program` , `School_ID_Program` , `University_ID`)
+    REFERENCES `sql9643262`.`Program` (`ID` , `Department_ID` , `School_ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Term`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Term` (
+  `ID` INT NOT NULL,
+  `Year` INT NOT NULL,
+  `Term` VARCHAR(45) NOT NULL,
+  `Timestamp_starts` DATE NOT NULL,
+  `Timestamo_ends` DATE NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `University_ID`),
+  INDEX `fk_Term_University1_idx` (`University_ID` ASC) ,
+  CONSTRAINT `fk_Term_University1`
+    FOREIGN KEY (`University_ID`)
+    REFERENCES `sql9643262`.`University` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`TermHasClass`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`TermHasClass` (
+  `Class_ID` INT NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Term_ID` INT NOT NULL,
+  `Syllabus` BLOB NOT NULL,
+  `Description` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Class_ID`, `Department_ID`, `School_ID`, `University_ID`, `Term_ID`),
+  INDEX `fk_Class_has_Term_Term1_idx` (`Term_ID` ASC, `University_ID` ASC) ,
+  INDEX `fk_Class_has_Term_Class1_idx` (`Class_ID` ASC, `Department_ID` ASC, `School_ID` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Class_has_Term_Class1`
+    FOREIGN KEY (`Class_ID` , `Department_ID` , `School_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Class` (`ID` , `Department_ID` , `School_ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Class_has_Term_Term1`
+    FOREIGN KEY (`Term_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Term` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`TermEnrollment_TermHasClassHasStudent`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`TermEnrollment_TermHasClassHasStudent` (
+  `Class_ID` INT NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Term_ID` INT NOT NULL,
+  `Student_ID` INT NOT NULL,
+  `FinalGrade` DECIMAL(2) NOT NULL,
+  PRIMARY KEY (`Class_ID`, `Department_ID`, `School_ID`, `University_ID`, `Term_ID`, `Student_ID`),
+  INDEX `fk_TermHasClass_has_Student_Student1_idx` (`Student_ID` ASC, `University_ID` ASC) ,
+  INDEX `fk_TermHasClass_has_Student_TermHasClass1_idx` (`Class_ID` ASC, `Department_ID` ASC, `School_ID` ASC, `University_ID` ASC, `Term_ID` ASC) ,
+  CONSTRAINT `fk_TermHasClass_has_Student_TermHasClass1`
+    FOREIGN KEY (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID`)
+    REFERENCES `sql9643262`.`TermHasClass` (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TermHasClass_has_Student_Student1`
+    FOREIGN KEY (`Student_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Student` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Company`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Company` (
+  `ID` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Timestamp_joined` DATETIME NOT NULL,
+  `City` VARCHAR(45) NOT NULL,
+  `State` VARCHAR(45) NOT NULL,
+  `Domain` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Employees`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Employees` (
+  `ID` INT NOT NULL,
+  `FIrstName` VARCHAR(45) NOT NULL,
+  `LastName` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `PhoneNumber` VARCHAR(45) NOT NULL,
+  `Company_ID` INT NOT NULL,
+  `Title` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`, `PhoneNumber`, `Company_ID`),
+  INDEX `fk_Staff_Company1_idx` (`Company_ID` ASC) ,
+  CONSTRAINT `fk_Staff_Company1`
+    FOREIGN KEY (`Company_ID`)
+    REFERENCES `sql9643262`.`Company` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Application`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Application` (
+  `ID` INT NOT NULL,
+  `Role` VARCHAR(45) NOT NULL COMMENT 'Intern / Full Time, etc\n',
+  `Type` VARCHAR(45) NOT NULL,
+  `Status` VARCHAR(45) NOT NULL,
+  `Term` VARCHAR(45) NOT NULL,
+  `Year` VARCHAR(45) NOT NULL,
+  `Description` VARCHAR(45) NOT NULL,
+  `Link` TEXT NULL COMMENT 'Hopefully in the future we buy HandShake and just direct students there. Maybe consider ',
+  `Company_ID` INT NOT NULL,
+  `Timestamp_positionstart` DATETIME NOT NULL,
+  `Timestamp_positionend` DATETIME NULL,
+  PRIMARY KEY (`ID`, `Company_ID`),
+  INDEX `fk_Application_Company1_idx` (`Company_ID` ASC) ,
+  CONSTRAINT `fk_Application_Company1`
+    FOREIGN KEY (`Company_ID`)
+    REFERENCES `sql9643262`.`Company` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Submission_StudentHasApplication`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Submission_StudentHasApplication` (
+  `Student_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Application_ID` INT NOT NULL,
+  `Company_ID` INT NOT NULL,
+  `Timestamp_submitted` DATETIME NOT NULL,
+  `Status` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Student_ID`, `University_ID`, `Application_ID`, `Company_ID`),
+  INDEX `fk_Student_has_Application_Application1_idx` (`Application_ID` ASC, `Company_ID` ASC) ,
+  INDEX `fk_Student_has_Application_Student1_idx` (`Student_ID` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Student_has_Application_Student1`
+    FOREIGN KEY (`Student_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Student` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Student_has_Application_Application1`
+    FOREIGN KEY (`Application_ID` , `Company_ID`)
+    REFERENCES `sql9643262`.`Application` (`ID` , `Company_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Staff`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Staff` (
+  `ID` INT NOT NULL,
+  `EmployeeID` VARCHAR(45) NOT NULL,
+  `FirstName` VARCHAR(45) NOT NULL,
+  `LastName` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `Role` VARCHAR(45) NOT NULL,
+  `Office` VARCHAR(45) NOT NULL,
+  `Timestamp_joined` DATETIME NOT NULL,
+  `Status` VARCHAR(45) NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `University_ID`),
+  INDEX `fk_Staff_University1_idx` (`University_ID` ASC) ,
+  CONSTRAINT `fk_Staff_University1`
+    FOREIGN KEY (`University_ID`)
+    REFERENCES `sql9643262`.`University` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`FacultyMember`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`FacultyMember` (
+  `Staff_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Office` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Staff_ID`, `University_ID`),
+  CONSTRAINT `fk_FacultyMember_Staff1`
+    FOREIGN KEY (`Staff_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`Staff` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`CourseTermInstructor_TermHasClassHasFacultyMember`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`CourseTermInstructor_TermHasClassHasFacultyMember` (
+  `Class_ID` INT NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Term_ID` INT NOT NULL,
+  `Staff_ID` INT NOT NULL,
+  `DiscussionBoardColor` VARCHAR(6) NOT NULL,
+  PRIMARY KEY (`Class_ID`, `Department_ID`, `School_ID`, `University_ID`, `Term_ID`, `Staff_ID`),
+  INDEX `fk_TermHasClass_has_FacultyMember_FacultyMember1_idx` (`Staff_ID` ASC, `University_ID` ASC) ,
+  INDEX `fk_TermHasClass_has_FacultyMember_TermHasClass1_idx` (`Class_ID` ASC, `Department_ID` ASC, `School_ID` ASC, `University_ID` ASC, `Term_ID` ASC) ,
+  CONSTRAINT `fk_TermHasClass_has_FacultyMember_TermHasClass1`
+    FOREIGN KEY (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID`)
+    REFERENCES `sql9643262`.`TermHasClass` (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TermHasClass_has_FacultyMember_FacultyMember1`
+    FOREIGN KEY (`Staff_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`FacultyMember` (`Staff_ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Extracurricular`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Extracurricular` (
+  `ID` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Timestamp_joined` VARCHAR(45) NOT NULL,
+  `Status` VARCHAR(45) NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `University_ID`),
+  INDEX `fk_Extracurricular_School1_idx` (`School_ID` ASC, `University_ID` ASC) ,
+  CONSTRAINT `fk_Extracurricular_School1`
+    FOREIGN KEY (`School_ID` , `University_ID`)
+    REFERENCES `sql9643262`.`School` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Activities_ExtracurricularHasStudent`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Activities_ExtracurricularHasStudent` (
+  `Student_ID` INT NOT NULL,
+  `University_ID_Student` INT NOT NULL,
+  `Extracurricular_ID` INT NOT NULL,
+  `University_ID_Extracurricular` INT NOT NULL,
+  `Timestamp_joined` DATETIME NOT NULL,
+  `Status` VARCHAR(45) NOT NULL,
+  `AmountDue` DECIMAL(2) NULL,
+  `Position` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Student_ID`, `University_ID_Student`, `Extracurricular_ID`, `University_ID_Extracurricular`),
+  INDEX `fk_Student_has_Extracurricular_Extracurricular1_idx` (`Extracurricular_ID` ASC, `University_ID_Extracurricular` ASC) ,
+  INDEX `fk_Student_has_Extracurricular_Student1_idx` (`Student_ID` ASC, `University_ID_Student` ASC) ,
+  CONSTRAINT `fk_Student_has_Extracurricular_Student1`
+    FOREIGN KEY (`Student_ID` , `University_ID_Student`)
+    REFERENCES `sql9643262`.`Student` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Student_has_Extracurricular_Extracurricular1`
+    FOREIGN KEY (`Extracurricular_ID` , `University_ID_Extracurricular`)
+    REFERENCES `sql9643262`.`Extracurricular` (`ID` , `University_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Assignment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Assignment` (
+  `ID` INT NOT NULL,
+  `Weight` DECIMAL(2) NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Status` VARCHAR(45) NOT NULL,
+  `MaxPoints` DECIMAL(2) NOT NULL,
+  `Class_ID` INT NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Term_ID` INT NOT NULL,
+  `Staff_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `Class_ID`, `Department_ID`, `School_ID`, `University_ID`, `Term_ID`, `Staff_ID`),
+  INDEX `fk_Assignment_CourseTermInstructor_TermHasClassHasFacultyMe_idx` (`Class_ID` ASC, `Department_ID` ASC, `School_ID` ASC, `University_ID` ASC, `Term_ID` ASC, `Staff_ID` ASC) ,
+  CONSTRAINT `fk_Assignment_CourseTermInstructor_TermHasClassHasFacultyMemb1`
+    FOREIGN KEY (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID` , `Staff_ID`)
+    REFERENCES `sql9643262`.`CourseTermInstructor_TermHasClassHasFacultyMember` (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID` , `Staff_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Lecture`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Lecture` (
+  `ID` INT NOT NULL,
+  `Title` VARCHAR(255) NOT NULL,
+  `Description` TEXT NOT NULL,
+  `Slides` BLOB NOT NULL,
+  `SummaryNotes` BLOB NOT NULL COMMENT 'User OtterAI API',
+  `Class_ID` INT NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Term_ID` INT NOT NULL,
+  `Staff_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `Class_ID`, `Department_ID`, `School_ID`, `University_ID`, `Term_ID`, `Staff_ID`),
+  INDEX `fk_Lecture_CourseTermInstructor_TermHasClassHasFacultyMembe_idx` (`Class_ID` ASC, `Department_ID` ASC, `School_ID` ASC, `University_ID` ASC, `Term_ID` ASC, `Staff_ID` ASC) ,
+  CONSTRAINT `fk_Lecture_CourseTermInstructor_TermHasClassHasFacultyMember1`
+    FOREIGN KEY (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID` , `Staff_ID`)
+    REFERENCES `sql9643262`.`CourseTermInstructor_TermHasClassHasFacultyMember` (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID` , `Staff_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sql9643262`.`Resources`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sql9643262`.`Resources` (
+  `ID` INT NOT NULL,
+  `Title` VARCHAR(45) NOT NULL,
+  `Description` TEXT NULL,
+  `File` BLOB NOT NULL,
+  `Timestamp_uploaded` DATETIME NULL,
+  `Class_ID` INT NOT NULL,
+  `Department_ID` INT NOT NULL,
+  `School_ID` INT NOT NULL,
+  `University_ID` INT NOT NULL,
+  `Term_ID` INT NOT NULL,
+  `Staff_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `Class_ID`, `Department_ID`, `School_ID`, `University_ID`, `Term_ID`, `Staff_ID`),
+  INDEX `fk_Resources_CourseTermInstructor_TermHasClassHasFacultyMem_idx` (`Class_ID` ASC, `Department_ID` ASC, `School_ID` ASC, `University_ID` ASC, `Term_ID` ASC, `Staff_ID` ASC) ,
+  CONSTRAINT `fk_Resources_CourseTermInstructor_TermHasClassHasFacultyMember1`
+    FOREIGN KEY (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID` , `Staff_ID`)
+    REFERENCES `sql9643262`.`CourseTermInstructor_TermHasClassHasFacultyMember` (`Class_ID` , `Department_ID` , `School_ID` , `University_ID` , `Term_ID` , `Staff_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

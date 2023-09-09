@@ -12,72 +12,53 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'frontend', 'build')));
 
+// Establish Live Sessions
+// app.use(session({
+//   secret: 'your-secret-key',  // TODO Function to generate unqieu IDs
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: false }  // Set to true if you're using HTTPS
+// }));
+
 // MySQL Connection
 const db = mysql.createConnection({
-  // ---- LOCALHOST INFORMATION - SHAHAF'S MACHINE -----
-  // host: '127.0.0.1',
-  // user: 'root',
-  // password: 'Sdan3189',
-  // database: 'theboard'
-
   // ------ LIVE DATABASE -----
   host: 'sql9.freemysqlhosting.net',
-  user: 'sql9636631',
-  password: 'wzXSRW4M5N', //DO NOT DELETE THIS PLEASE -haf
-  database: 'sql9636631'
+  user: 'sql9643262',
+  password: 'g17iN8jreY', //DO NOT DELETE THIS PLEASE -haf
+  database: 'sql9643262'
 });
 
 db.connect((err) => {
   if (err) throw err;
   console.log('MySQL Connected...');
-});
 
-// API routes
+  // Import the registration routes after the database connection is established
+  const registrationRoutes = require('./backend/registration')(db);
+  app.use('/api/registration', registrationRoutes);
 
+  const signinRoutes = require('./backend/signin')(db);
+  app.use('/api/signin', signinRoutes);
 
-app.get('/getdata', (req, res) => {
-  const sql = "SELECT * FROM School";
-  db.query(sql, (err, results) => {
-    if (err) throw err;
-    res.json(results);
+  // API routes
+  app.get('/getdata', (req, res) => {
+    const sql = "SELECT * FROM School";
+    db.query(sql, (err, results) => {
+      if (err) throw err;
+      res.json(results);
+    });
   });
-});
 
-// Check if email exists in the Student table
-app.post('/api/check-email', (req, res) => {
-  const { email } = req.body;
+  // Use the registration routes
+  
 
-  const sql = `
-      SELECT Student.Email, School.Domain
-      FROM Student
-      JOIN School ON Student.School_ID = School.ID
-      WHERE CONCAT(Student.email, '@', School.Domain) = ?;
-  `;
-
-  db.query(sql, [email], (err, results) => {
-      if (err) {
-          console.error("Error during DB query:", err); // Log the error
-          res.status(500).json({ error: err.message }); // Send the error message to client
-          return;
-      }
-
-      if (results && results.length > 0) {
-          res.json({ exists: true });
-      } else {
-        res.json({ exists: false, message: "Email not recognized by the system." });
-      }
+  // Catch-all route to serve the React application
+  // This should be the last route defined
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
   });
-});
 
-
-
-
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-// Catch-all route to serve the React application
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
 });

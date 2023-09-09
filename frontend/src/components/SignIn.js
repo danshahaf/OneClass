@@ -11,21 +11,22 @@ const SignIn = () => {
         e.preventDefault();
         
         // Call the backend to check the email
-        const response = await fetch('http://localhost:1707/api/check-email', {
+        const response = await fetch('http://localhost:1707/api/signin/check-email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
         }); 
-        console.log(" >>  RESPONSE ", response);
         const data = await response.json();
-        console.log(" >> DATA", data);
-        if (data.exists) {
-            if (data[0] == 'student') {
+        if (data) {
+            if (data['account-type'] == 'student') {
+                console.log(" >>  STUDENT LOG IN");
                 navigate('/student');
-            } else if (data[0] == 'faculty') {
-                navigate('faculty');
-            } else if(data[0] == 'admin') {
-                navigate('admin');
+            } else if (data['account-type'] == 'staff') {
+                console.log(" >>  FACULTY LOG IN");
+                navigate('/faculty');
+            } else if(data['account-type'] == 'admin') {
+                console.log(" >>  ADMIN LOG IN");
+                navigate('/admin');
             }   
         } else {
             setErrorMessage(data.message);

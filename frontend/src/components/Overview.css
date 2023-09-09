@@ -1,0 +1,122 @@
+/* Overview.css */
+
+.overview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.add-new-school {
+    width: 40%;
+    height: 50px;
+    background-color: #3366cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif; /* You can replace 'Arial' with any modern font you prefer */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-new-school:hover {
+    background-color: #2855a4; /* A slightly darker shade for hover effect */
+}
+
+.form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    padding: 10px 15px;
+    border: none;
+    width: 40%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container button:first-child {
+    background-color: #3366cc;
+    color: white;
+}
+
+.form-container button:last-child {
+    background-color: #ccc;
+}
+
+
+/* ------- DISPLAY UNIVERSITIES -------------- */
+.university-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px; /* Added margin around the table */
+}
+
+.university-table th, .university-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; /* Center content in cells */
+}
+
+.university-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+.university-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Style for the Edit button */
+.edit-btn {
+    background: transparent;
+    border: 2px solid #FFA500; /* Yellow-orange border */
+    color: black; /* Bold black icon */
+    font-weight: bold; /* Make the icon bold */
+    padding: 5px 10px; /* Padding around the button */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: rgba(255, 165, 0, 0.1); /* Slight yellow-orange shade for hover effect */
+}
+
+/* Style for the Remove button */
+.remove-btn {
+    background: transparent;
+    border: 2px solid red; /* Red border */
+    color: black; /* Bold black icon */
+    font-weight: bold; /* Make the icon bold */
+    padding: 5px 10px; /* Padding around the button */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+    background-color: rgba(255, 0, 0, 0.1); /* Slight red shade for hover effect */
+}
+
+/* Hide the default button outline on focus */
+.edit-btn:focus, .remove-btn:focus {
+    outline: none;
+}

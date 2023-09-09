@@ -5,6 +5,7 @@ import SideMenu from './components/SideMenu';
 import MainMenu from './components/MainMenu';
 import MainPage from './components/MainPage';
 import SignIn from './components/SignIn'; 
+import Overview from './components/Overview'; 
 import Notifications from './components/Notifications'; 
 
 function App() {
@@ -17,6 +18,15 @@ function App() {
         <Routes>
           {/* Sign-in Route */}
           <Route path="/signin" element={<SignIn />} />
+
+          {/* Sign-in Route */}
+          <Route path="/overview" element={
+            <div className = "overview-container main-container">
+              <MainMenu />
+              <Overview />
+            </div>
+            
+          } />
 
           {/* Main Application Route */}
           <Route path="/student" element={

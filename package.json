@@ -4,7 +4,8 @@
   "description": "# Project Name",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "mdb-react-ui-kit": "^6.1.0",
     "mysql2": "^3.5.2",
     "path": "^0.12.7",
@@ -28,5 +30,8 @@
     "react-resizable": "^3.0.5",
     "react-router-dom": "^6.14.2",
     "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
